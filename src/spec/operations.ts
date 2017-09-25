@@ -55,6 +55,7 @@ function getPathOperation(method: HttpMethod, pathInfo, spec: ApiSpec): ApiOpera
 function getOperationGroupName(op: any): string {
   let name = op.tags && op.tags.length ? op.tags[0] : 'default'
   name = name.replace(/[^$_a-z0-9]+/gi, '')
+  name = name + 'Group'
   return name.replace(/^[0-9]+/m, '')
 }
 
