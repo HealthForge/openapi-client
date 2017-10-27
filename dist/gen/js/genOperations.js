@@ -153,6 +153,7 @@ function getParamSignature(param, options) {
         signature.push(support_1.getTSParamType(param));
     return signature;
 }
+exports.getParamSignature = getParamSignature;
 function getParamName(name) {
     const parts = name.split(/[_-\s!@\#$%^&*\(\)]/g).filter(n => !!n);
     return parts.reduce((name, p) => `${name}${p[0].toUpperCase()}${p.slice(1)}`);
