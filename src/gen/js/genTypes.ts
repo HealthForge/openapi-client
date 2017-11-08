@@ -249,7 +249,7 @@ export interface ServiceMeta {
 
 function renderTypeDoc(name: string, def: any): string[] {
   if (def.allOf) return renderDocInheritance(name, def.allOf)
-  if (def.type !== 'object') {
+  if (def.type !== 'object' || !def.properties) {
     console.warn(`Unable to render ${name} ${def.type}, skipping.`)
     return []
   }
