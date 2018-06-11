@@ -1,5 +1,5 @@
 // Auto-generated, edits will be overwritten
-import spec from './spec';;
+import spec from './apispec';;
 
 export class ServiceError extends Error {}
 

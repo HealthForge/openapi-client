@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = genSpec;
 function genSpecFile(spec, options) {
     return {
-        path: `${options.outDir}/gateway/spec.${options.language}`,
+        path: `${options.outDir}/gateway/apispec.${options.language}`,
         contents: renderSpecView(spec, options)
     };
 }

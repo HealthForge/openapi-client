@@ -8,7 +8,7 @@ export default function genSpec(spec: ApiSpec, options: ClientOptions) {
 
 export function genSpecFile(spec: ApiSpec, options: ClientOptions) {
   return {
-    path: `${options.outDir}/gateway/spec.${options.language}`,
+    path: `${options.outDir}/gateway/apispec.${options.language}`,
     contents: renderSpecView(spec, options)
   }
 }
