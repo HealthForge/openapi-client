@@ -42,7 +42,7 @@ function renderReduxActionBlock(spec, op, options) {
     let paramSignature = genOperations_1.renderParamSignature(op, options, `${op.group}.`);
     paramSignature += `${paramSignature ? ', ' : ''}${infoParam}`;
     const required = op.parameters.filter(param => param.required);
-    let params = required.map(param => genOperations_1.getParamSignature(param, options)).join(', ');
+    let params = required.map(param => genOperations_1.getParamName(param.name)).join(', ');
     if (required.length < op.parameters.length) {
         if (required.length)
             params += ', options';

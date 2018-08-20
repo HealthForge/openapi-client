@@ -52,7 +52,7 @@ function renderTsType(name, def, options) {
     const lines = [];
     if (def.description) {
         lines.push(`/**`);
-        lines.push(support_1.DOC + def.description.trim().replace(/\n/g, `\n$${support_1.DOC}${support_1.SP}`));
+        lines.push(support_1.DOC + def.description.trim().replace(/\n/g, `\n${support_1.DOC}${support_1.SP}`));
         lines.push(` */`);
     }
     lines.push(`export interface ${name} {`);
@@ -169,6 +169,7 @@ export interface ServiceOptions {
   formatServiceError?: (response: FetchResponse, data: any) => ServiceError${support_1.ST}
   processRequest?: (op: OperationInfo, reqInfo: RequestInfo) => RequestInfo${support_1.ST}
   processResponse?: (req: api.ServiceRequest, res: Response<any>, attempt: number) => Promise<api.ResponseOutcome>${support_1.ST}
+  processError?: (req: api.ServiceRequest, res: api.ResponseOutcome) => Promise<api.ResponseOutcome>${support_1.ST}
   authorizationHeader?: string${support_1.ST}
 }
 

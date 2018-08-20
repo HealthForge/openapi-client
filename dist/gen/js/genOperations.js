@@ -153,10 +153,53 @@ function getParamSignature(param, options) {
         signature.push(support_1.getTSParamType(param));
     return signature;
 }
-exports.getParamSignature = getParamSignature;
 function getParamName(name) {
     const parts = name.split(/[_-\s!@\#$%^&*\(\)]/g).filter(n => !!n);
-    return parts.reduce((name, p) => `${name}${p[0].toUpperCase()}${p.slice(1)}`);
+    const reduced = parts.reduce((name, p) => `${name}${p[0].toUpperCase()}${p.slice(1)}`);
+    return escapeReservedWords(reduced);
+}
+exports.getParamName = getParamName;
+function escapeReservedWords(name) {
+    let escapedName = name;
+    const reservedWords = [
+        'break',
+        'case',
+        'catch',
+        'class',
+        'const',
+        'continue',
+        'debugger',
+        'default',
+        'delete',
+        'do',
+        'else',
+        'export',
+        'extends',
+        'finally',
+        'for',
+        'function',
+        'if',
+        'import',
+        'in',
+        'instanceof',
+        'new',
+        'return',
+        'super',
+        'switch',
+        'this',
+        'throw',
+        'try',
+        'typeof',
+        'var',
+        'void',
+        'while',
+        'with',
+        'yield'
+    ];
+    if (reservedWords.indexOf(name) >= 0) {
+        escapedName = name + '_';
+    }
+    return escapedName;
 }
 function renderOperationObject(spec, op, options) {
     const lines = [];
@@ -259,7 +302,7 @@ function renderOperationInfo(spec, op, options) {
     return lines;
 }
 function renderSecurityInfo(security) {
-    return security.map(sec => {
+    return security.map((sec, i) => {
         const scopes = sec.scopes;
         const secLines = [];
         secLines.push(`${support_1.SP.repeat(2)}{`);
@@ -267,7 +310,7 @@ function renderSecurityInfo(security) {
         if (scopes) {
             secLines.push(`${support_1.SP.repeat(3)}scopes: ['${scopes.join(`', '`)}']`);
         }
-        secLines.push(`${support_1.SP.repeat(2)}}`);
+        secLines.push(`${support_1.SP.repeat(2)}}${i + 1 < security.length ? ',' : ''}`);
         return secLines;
     }).reduce((a, b) => a.concat(b));
 }
