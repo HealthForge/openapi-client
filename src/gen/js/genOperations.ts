@@ -155,7 +155,7 @@ function renderReturnSignature(op: ApiOperation, options: ClientOptions): string
   return `: Promise<api.Response<${getTSParamType(response)}>>`
 }
 
-export function getParamSignature(param: ApiOperationParam, options: ClientOptions): string[] {
+function getParamSignature(param: ApiOperationParam, options: ClientOptions): string[] {
   const signature = [getParamName(param.name)]
   if (options.language === 'ts') signature.push(getTSParamType(param))
   return signature
